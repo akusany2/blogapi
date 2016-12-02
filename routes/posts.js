@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const db = require('../db')
 
 // get all posts
 // get single post based on id
@@ -6,10 +7,22 @@ const router = require('express').Router()
 
 router
 	.get('/', (req, res, next) => {
-		res.json({msg: 'All post comes here'})
+		db
+			.Post
+			.fetchAll()
+			.then((data)=>{
+				return res.json(data)
+			})
+		
 	})
 	.get('/:id', (req, res, next) => {
-		res.json({msg: 'Single post comes here', id: req.params.id})
+		db
+			.Post
+			.where('id', req.params.id)
+			.fetch({widthRelated: ['tags'], require:true})
+			.then((data)=> {
+				return res.json({data, ralation: data.related('tags').toJSON()})
+			})
 	})
 
 	.get('/new-post', (req, res, next) => {

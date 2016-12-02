@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server"
+    "start": "nodemon server",
+    "boot": "knex migrate:latest && seed:run"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "faker": "^3.1.0",
     "morgan": "^1.7.0",
     "nodemon": "^1.11.0"
   }

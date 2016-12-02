@@ -8,6 +8,7 @@ require('./passport')(passport)
 
 // Routes
 const posts = require('./routes/posts')
+const tags = require('./routes/tags')
 const user = require('./routes/user')
 const authenticate = require('./routes/authenticate')
 // ----
@@ -21,6 +22,7 @@ app
 	// .use('/user', passport.authenticate('jwt', {session:false}), user)
 	.use('/user', user)
 	.use('/posts', posts)
+	.use('/tags', tags)
 	.use('/authenticate', authenticate)
 	.get('/', (req, res, next) => {
 		res.json({msg: 'This is home'})
@@ -28,3 +30,4 @@ app
 
 
 app.listen(3000)
+console.log('Server started at localhost:3000')

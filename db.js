@@ -7,10 +7,34 @@ const User = bookshelf.Model.extend({
 })
 
 const Post = bookshelf.Model.extend({
-	tableName: 'posts'
+	tableName: 'posts',
+	hasTimestamps: true,
+	tags: function(){
+		return this.belongsToMany(Tag)
+	}
+})
+
+const Tag = bookshelf.Model.extend({
+	tableName: 'tags',
+	posts: function(){
+		return this.belongsToMany(Post).through(PostTag)
+	}
+})
+
+// Pivot table
+const PostTag = bookshelf.Model.extend({
+	tableName: 'posts_tags',
+	post: function(){
+		return this.belongsTo(Post)
+	},
+	tag: function(){
+		return this.belongsTo(Tag)
+	}
+
 })
 
 module.exports = {
 	User: User,
-	Post: Post
+	Post: Post,
+	Tag: Tag
 }
