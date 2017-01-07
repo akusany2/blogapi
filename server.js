@@ -19,8 +19,8 @@ app
 	.use(bodyParser.json())
 	.use(bodyParser.urlencoded({extended: true}))
 	.use(passport.initialize())
-	// .use('/user', passport.authenticate('jwt', {session:false}), user)
-	.use('/user', user)
+	.use('/user', passport.authenticate('jwt', {session:false}), user)
+	// .use('/user', user)
 	.use('/posts', posts)
 	.use('/tags', tags)
 	.use('/authenticate', authenticate)
@@ -29,5 +29,5 @@ app
 	})
 
 
-app.listen(3000)
-console.log('Server started at localhost:3000')
+app.listen(3001)
+console.log('Server started at localhost:3001')

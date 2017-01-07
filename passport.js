@@ -10,9 +10,19 @@ module.exports = function(passport){
 	}
 
 	passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
-		console.log(jwt_payload)
+		console.log(`jwt_payload(passport.js): ${jwt_payload}`)
+		// jwt_payload is the ID - got from authenticate.js jwt.encode (id)
+		db
+			.User
+			.where('id', jwt_payload)
+			.fetch()
+			.then((user) => {
+				done(null, user)
 
+			})
+			.catch(err => {
+				return done(err, false)
+			})
 
-		return done(null, {username: 'asd'})
 	}))
 }

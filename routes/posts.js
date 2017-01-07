@@ -19,9 +19,9 @@ router
 		db
 			.Post
 			.where('id', req.params.id)
-			.fetch({widthRelated: ['tags'], require:true})
+			.fetch({withRelated: ['tags'], require:true})
 			.then((data)=> {
-				return res.json({data, ralation: data.related('tags').toJSON()})
+				return res.json({data})
 			})
 	})
 

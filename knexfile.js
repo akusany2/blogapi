@@ -8,9 +8,10 @@ module.exports = {
     connection: {
       host     : '127.0.0.1',
       user     : 'root',
-      password : '',
+      password : 'root',
       database : 'node_blog',
-      charset  : 'utf8'
+      charset  : 'utf8',
+      socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
     }
   },
 
@@ -20,7 +21,7 @@ module.exports = {
       connection: {
       host     : '127.0.0.1',
       user     : 'root',
-      password : '',
+      password : 'root',
       database : 'node_blog',
       charset  : 'utf8'
       }
