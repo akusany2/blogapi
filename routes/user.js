@@ -8,6 +8,7 @@ router
 		// use .get('email') as it is a bookshelf object
 		let email = req.user.get('email')
 
+		// console.log(req.headers);
 		res.json(email)
 	})
 	.post('/', (req, res, next) => {
